@@ -1,0 +1,46 @@
+html,body {
+    background: #4b0041;
+}  
+.console {
+    border-top: 20px solid #999999;
+    width: 600px;
+    height: 450px;
+    background: #121010;
+    color: #FFF;
+    font-family: 'Arial';
+    padding: 10px;
+    font-size: 0.9em;
+    margin: 100px 200px;
+}
+
+p {
+  padding: 0px;
+  margin: 0px;
+  text-transform: uppercase;
+}
+.green {
+  color: rgb(118, 146, 32);
+}
+.red {
+  color: #ff123e;
+}
+.yellow {
+  color: #E1D728;
+}
+.cursor {
+  font-weight: 100;
+  color: #FFF;
+  animation: 1s blink step-end infinite;
+}
+.cursor:after {
+  content: "|";
+}
+
+@keyframes blink {
+  from, to {
+    color: #121212;
+  }
+  50% {
+    color: #FFF;
+  }
+}
