@@ -10,7 +10,7 @@ html,body {
     font-family: 'Arial';
     padding: 10px;
     font-size: 0.9em;
-    margin: 100px 200px;
+    margin: 150px 500px;
 }
 
 p {
@@ -19,10 +19,10 @@ p {
   text-transform: uppercase;
 }
 .green {
-  color: rgb(118, 146, 32);
+  color: #38830c;
 }
 .red {
-  color: #ff123e;
+  color: #e40f36;
 }
 .yellow {
   color: #E1D728;

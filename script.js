@@ -1,65 +1,89 @@
 $(document).ready(function () {
 
-//Start function
+//declaration of general settings
+let day = 1;
+let expirence = 0;
+let starkRep = 0;
+let ziboRep = 0;
+let arkanRep = 0;
+
 function go() {
-    const startText = [
-        "----------",
-        "Hello !",
-        "Type 'help' to check the commands",
-        "----------"
-    ];
-    for (let i = 0; i < startText.length; i++) {
-        newLine(startText[i], "yellow");
+    newLine("-------", "yellow");
+    newLine("Hi programmer", "yellow");
+
+    if (expirence <= 30){
+        newLine("You are not good", "yellow");
+    } else if (expirence > 30) {
+        newLine("You really good", "yellow");
     }
+    
+    newLine("-------", "yellow");
+    newLine("Commands - 'help'", "yellow");
+    newLine("-------", "yellow");
+
     newLine("");
 }
 
 go();
 
-//help function
 function help() {
-    const commands = [
-        "-------",
-        "All:",
-        "Companies - Check the list of companies",
-        "Clear - cleans the terminal",
-        "Start - shows the start message",
-        
-        "-------"
-    ];
-    for (let i = 0; i < commands.length; i++) {
-        newLine(commands[i], "yellow");
-    }
+    newLine("-------", "yellow");
+    newLine("Companies - Check the list of companies", "yellow");
+    newLine("Clear - cleans the terminal", "yellow");
+    newLine("Start - shows the start message", "yellow");
+    newLine("Status - reputation on companies", "yellow");
+    newLine("Small - a small project", "yellow");
+    newLine("Big - a big project", "yellow");
+    newLine("-------", "yellow");
+
     newLine("");
 }
 
 function companies() {
-    const company = [
-        "-------",
-        "1. Starks",
-        "1. Zibo",
-        "1. Arkan",
-        "-------"
-    ];
-    for (let i = 0; i < company.length; i++) {
-        newLine(company[i], "yellow");
-    }
+    newLine("-------", "yellow");
+    newLine("1. Starks", "yellow");
+    newLine("2. Zibo", "yellow");
+    newLine("3. Arkan", "yellow");
+    newLine("-------", "yellow");
+
     newLine("");
 }
 
-function newLine(text, classname) {
-    window.setTimeout(function () {
-        $(".console").append('<p ' + (typeof classname == undefined ? '' : 'class="' + classname + '"') + '>' + text + '</p>');
-        $(".cursor").remove();
-        $("p:last").append('<span class="cursor"></span>');
+function smallProject() {
+    
+    starkRep += 2;
+    ziboRep += 4;
+    day += 2;
+    expirence += 2;
+    newLine("-------", "yellow");
 
-        if ($("p").length > 23) {
-            $("p")[0].remove();
-        }
+    newLine("");
+}
 
-        $(".console").animate({ scrollTop: $(document).height() }, "slow");
-    }, 150);
-    return false;
+function bigProject() {
+    
+    starkRep += 14;
+    arkanRep += 4;
+    day += 7;
+    expirence += 14;
+    newLine("-------", "yellow");
+
+    newLine("");
+}
+function status() {
+    newLine("-------", "yellow");
+    newLine(`Day: ${day}`, "red");
+    newLine("-------", "yellow");
+    newLine(`Your expirence is: ${expirence}` , "yellow");
+    newLine("-------", "yellow");
+    newLine(`Your reputation in Stark: ${starkRep}` , "green");
+    newLine("----", "yellow");
+    newLine(`Your reputation in Zibo: ${ziboRep}` , "green");
+    newLine("----", "yellow");
+    newLine(`Your reputation in Arkan: ${arkanRep}` , "green");
+    newLine("-------", "yellow");
+    
+    newLine("");
 }
 
 function clear() {
@@ -77,6 +101,7 @@ function parseCommand(command) {
         newLine("No command was entered", "red");
         newLine("");
     } else {
+
         switch (command.split(" ")[0]) {
             case "HELP":
                 help();
@@ -90,6 +115,15 @@ function parseCommand(command) {
             case "START":
                 go();
                 break;
+            case "SMALL":
+                smallProject();
+                break;
+            case "BIG":
+                bigProject();
+                break;
+            case "STATUS":
+                status();
+                break;
             default:
                 newLine("Command '" + command.split(" ")[0] + "' was not recognised", "red");
                 newLine("");
@@ -97,6 +131,21 @@ function parseCommand(command) {
         }
     }
     return true;
+}
+
+function newLine(text, classname) {
+    window.setTimeout(function () {
+        $(".console").append('<p ' + (typeof classname == undefined ? '' : 'class="' + classname + '"') + '>' + text + '</p>');
+        $(".cursor").remove();
+        $("p:last").append('<span class="cursor"></span>');
+
+        if ($("p").length > 25) {
+            $("p")[0].remove();
+        }
+
+        $(".console").animate({ scrollTop: $(document).height() }, "slow");
+    }, 150);
+    return false;
 }
 
 $(window).keyup(function (e) {
